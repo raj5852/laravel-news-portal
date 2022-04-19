@@ -1,6 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LaravelController;
+use App\Http\Controllers\VuejsController;
+
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\CKEditorController;
+use App\Http\Controllers\JavascriptController;
+use App\Http\Controllers\NewpostController;
+use App\Http\Controllers\PhpController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +22,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[HomeController::class,'index'])->name('home');
+Route::get('laravel',[LaravelController::class,'index'])->name('laravel');
+Route::get('vue-js',[VuejsController::class,'index'])->name('vuejs');
+Route::get('php',[PhpController::class,'index'])->name('php');
+Route::get('javascript',[JavascriptController::class,'index'])->name('javascript');
+
+
+
+
+//admin route
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('new-post', [NewpostController::class, 'index'])->name('newpost');
+Route::post('ckeditor/upload', [CKEditorController::class,'upload'])->name('ckeditor.image-upload');
+Route::post('form-submit',[NewpostController::class,'formsubmit'])->name('formsubmit');
+Route::get('all-post',[NewpostController::class,'allpost'])->name('allpost');
+Route::get('oist-edit/{id}',[NewpostController::class,'postedit'])->name('postedit');
+Route::post('editpostedit',[NewpostController::class,'editpostedit'])->name('editpostedit');

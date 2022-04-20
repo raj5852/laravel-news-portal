@@ -28,9 +28,10 @@
                  </li>
                  <li class="nav-item">
                     <a href="{{ route('newpost') }}"  class="nav-link {{ Route::is('newpost')?'active':'' }}">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i style="font-size:17px" class="fa">&#xf067;</i>
+
                         <p>
-                            +NEW POST
+                            NEW POST
 
                         </p>
                     </a>
@@ -38,7 +39,8 @@
 
                 <li class="nav-item">
                     <a href="{{ route('allpost') }}"  class="nav-link {{ Route::is('allpost')?'active':'' }}" id="allpost">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i style="font-size:17px" class="fa">&#xf044;</i>
+
                         <p>
                             All POST
 

@@ -27,7 +27,14 @@
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
+                @if (session()->has('message'))
+                    <div class="col-md-6">
+                        <div class="alert alert-secondary">
 
+                            {{ session()->get('message') }}
+                        </div>
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
@@ -80,8 +87,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: "{{ route('allpost') }}",
-                columns: [
-                    {
+                columns: [{
                         data: 'id',
                         name: 'id'
                     },
@@ -106,5 +112,25 @@
             });
 
         });
+
+        function deleteFunc(id) {
+            if (confirm("Delete Record?") == true) {
+                var id = id;
+                // ajax
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('deletepost') }}",
+                    data: {
+                        id: id
+                    },
+                    dataType: 'json',
+                    success: function(res) {
+                        var oTable = $('#all-post-table').dataTable();
+                        oTable.fnDraw(false);
+                        // console.log(res);
+                    }
+                });
+            }
+        }
     </script>
 @endsection

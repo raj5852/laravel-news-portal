@@ -23,7 +23,41 @@
           <!-- Main content -->
           <div class="content">
               <div class="container-fluid">
-                  <h1>Hello world</h1>
+                <div class="row">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-primary text-white mb-4">
+                            <div class="card-body">
+                                <h2 class="text-center">0</h2>
+                                <h5 class="text-center">All Posts</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-warning text-white mb-4">
+                            <div class="card-body">
+                                <h2 class="text-center">0</h2>
+                                <h5 class="text-center">Today visitor</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-danger text-white mb-4">
+                            <div class="card-body">
+                                <h2 class="text-center">0</h2>
+                                <h5 class="text-center">Last 7 days visitor.</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-success text-white mb-4">
+                            <div class="card-body">
+                                <h2 class="text-center">0</h2>
+                                <h5 class="text-center">All visitor</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
                   <!-- /.row -->
               </div><!-- /.container-fluid -->
           </div>

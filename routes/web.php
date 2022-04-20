@@ -39,3 +39,4 @@ Route::post('form-submit',[NewpostController::class,'formsubmit'])->name('formsu
 Route::get('all-post',[NewpostController::class,'allpost'])->name('allpost');
 Route::get('oist-edit/{id}',[NewpostController::class,'postedit'])->name('postedit');
 Route::post('editpostedit',[NewpostController::class,'editpostedit'])->name('editpostedit');
+Route::post('delete-post',[NewpostController::class,'deletepost'])->name('deletepost');

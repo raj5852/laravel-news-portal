@@ -55,6 +55,7 @@
 
                         <form method="post" action="{{ route('editpostedit') }}" enctype="multipart/form-data">
                             @csrf
+                            <input type="hidden" name="id" value="{{ $posts->id }}">
                             <div class="col-md-7">
                                 <label for="">Category</label><br>
                                 <select name="category" id="CategoryValue">

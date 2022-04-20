@@ -7,6 +7,7 @@ use App\Http\Controllers\VuejsController;
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\CKEditorController;
+use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\JavascriptController;
 use App\Http\Controllers\NewpostController;
 use App\Http\Controllers\PhpController;
@@ -31,7 +32,11 @@ Route::get('javascript',[JavascriptController::class,'index'])->name('javascript
 
 
 
-//admin route
+//admin route   
+
+Route::get('adminlogin', [CustomAuthController::class, 'index'])->name('adminlogin');
+Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('adminlogin.custom');
+
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('new-post', [NewpostController::class, 'index'])->name('newpost');
 Route::post('ckeditor/upload', [CKEditorController::class,'upload'])->name('ckeditor.image-upload');

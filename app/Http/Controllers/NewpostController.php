@@ -7,7 +7,15 @@ use App\Models\Post;
 
 class NewpostController extends Controller
 {
-    //
+    function __construct()
+    {
+         $this->middleware('permission:post-create', ['only' => ['index']]);
+         $this->middleware('permission:post-list|post-edit|post-delete', ['only' => ['allpost']]);
+         $this->middleware('permission:post-edit', ['only' => ['postedit']]);
+         $this->middleware('permission:post-delete', ['only' => ['deletepost']]);
+
+    }
+
     function index()
     {
         return view('new-post');

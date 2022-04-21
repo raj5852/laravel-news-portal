@@ -36,11 +36,12 @@ Route::get('javascript', [JavascriptController::class, 'index'])->name('javascri
 
 //admin route
 Route::get('adminlogin', [CustomAuthController::class, 'index'])->name('login');
-
+Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.post');
+Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
+
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('new-post', [NewpostController::class, 'index'])->name('newpost');

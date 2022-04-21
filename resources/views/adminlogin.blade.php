@@ -31,7 +31,7 @@
                     <div class="card">
                         <h3 class="card-header text-center">Admin Login</h3>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('login.custom') }}">
+                            <form method="POST" action="{{ route('login.post') }}">
                                 @csrf
                                 <div class="form-group mb-3">
                                     <input type="text" placeholder="Email" id="email" class="form-control"
@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
                                 <div class="d-grid mx-auto">
-                                    <button type="submit" class="btn btn-dark btn-block">Signin</button>
+                                    <input type="submit" value="Login " class="btn btn-dark btn-block">
                                 </div>
                             </form>
                         </div>

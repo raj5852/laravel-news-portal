@@ -25,39 +25,39 @@
                          </p>
                      </a>
                  </li>
-                 <li class="nav-item">
-                     <a href="{{ route('newpost') }}" class="nav-link {{ Route::is('newpost') ? 'active' : '' }}">
-                         <i style="font-size:17px" class="fa">&#xf067;</i>
 
-                         <p>
-                             NEW POST
+                 @can('post-create')
+                     <li class="nav-item">
+                         <a href="{{ route('newpost') }}" class="nav-link {{ Route::is('newpost') ? 'active' : '' }}">
+                             <i style="font-size:17px" class="fa">&#xf067;</i>
 
-                         </p>
-                     </a>
-                 </li>
+                             <p>
+                                 NEW POST
 
-                 <li class="nav-item">
-                     <a href="{{ route('allpost') }}" class="nav-link {{ Route::is('allpost') ? 'active' : '' }}"
-                         id="allpost">
-                         <i style="font-size:17px" class="fa">&#xf044;</i>
+                             </p>
+                         </a>
+                     </li>
+                 @endcan
 
-                         <p>
-                             All POST
 
-                         </p>
-                     </a>
-                 </li>
-                 <li class="nav-item">
-                     <a href="#" class="nav-link">
-                         <i class="nav-icon fas fa-th"></i>
-                         <p>
-                             Simple Link
-                             <span class="right badge badge-danger">New</span>
-                         </p>
-                     </a>
-                 </li>
+                 @if (auth()->user()->hasAnyPermission(['post-list', 'post-edit', 'post-delete']))
+                     <li class="nav-item">
+                         <a href="{{ route('allpost') }}"
+                             class="nav-link {{ Route::is('allpost') ? 'active' : '' }}" id="allpost">
+                             <i style="font-size:17px" class="fa">&#xf044;</i>
+
+                             <p>
+                                 All POST
+
+                             </p>
+                         </a>
+                     </li>
+                 @endif
+
+
                  {{-- test --}}
-                 <li class="nav-item {{ Route::is('users*')?'active menu-is-opening menu-open': '' }} {{ Route::is('roles*')?'active menu-is-opening menu-open': '' }}  ">
+                 <li
+                     class="nav-item {{ Route::is('users*') ? 'active menu-is-opening menu-open' : '' }} {{ Route::is('roles*') ? 'active menu-is-opening menu-open' : '' }}  ">
                      <a href="#" class="nav-link ">
                          <i class="nav-icon fas fa-tachometer-alt"></i>
                          <p>
@@ -65,15 +65,21 @@
                              <i class="right fas fa-angle-left"></i>
                          </p>
                      </a>
-                     <ul class="nav nav-treeview {{ Route::is('users*')?'style="display: block;"':'style="display: none;"' }} "  >
+                     <ul
+                         class="nav nav-treeview {{ Route::is('users*') ? 'style="display: block;"' : 'style="display: none;"' }} ">
+                         @if (auth()->user()->hasAnyPermission(['admin-list', 'admin-create', 'admin-edit', 'admin-delete']))
+                             <li class="nav-item">
+                                 <a href="{{ route('users.index') }}"
+                                     class="nav-link myclass {{ Route::is('users.index') ? 'active' : '' }} ">
+                                     <i class="far fa-circle nav-icon"></i>
+                                     <p>Manage Admin</p>
+                                 </a>
+                             </li>
+                         @endif
+
                          <li class="nav-item">
-                             <a href="{{  route('users.index') }}" class="nav-link myclass {{ Route::is('users.index')?'active':'' }} ">
-                                 <i class="far fa-circle nav-icon"></i>
-                                 <p>Manage Admin</p>
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a href="{{ route('roles.index') }}" class="nav-link myroleclass {{ Route::is('roles.index')?'active':'' }}">
+                             <a href="{{ route('roles.index') }}"
+                                 class="nav-link myroleclass {{ Route::is('roles.index') ? 'active' : '' }}">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>Manage Role</p>
                              </a>

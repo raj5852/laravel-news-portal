@@ -14,6 +14,7 @@ class CustomAuthController extends Controller
 
     public function customLogin(Request $request)
     {
+
         $request->validate([
             'email' => 'required',
             'password' => 'required',
@@ -25,7 +26,7 @@ class CustomAuthController extends Controller
                         ->with('message','Signed in');
         }
 
-        return redirect("login")->with('message','Login details is not correct');
+        return redirect("adminlogin")->with('message','Login details is not correct');
     }
 
 
@@ -33,6 +34,6 @@ class CustomAuthController extends Controller
         Session::flush();
         Auth::logout();
 
-        return Redirect('login');
+        return redirect()->route('login');
     }
 }

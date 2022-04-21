@@ -25,7 +25,7 @@ class CustomAuthController extends Controller
                         ->with('message','Signed in');
         }
 
-        return redirect("adminlogin")->with('message','Login details is not correct');
+        return redirect("login")->with('message','Login details is not correct');
     }
 
 
@@ -33,6 +33,6 @@ class CustomAuthController extends Controller
         Session::flush();
         Auth::logout();
 
-        return Redirect('adminlogin');
+        return Redirect('login');
     }
 }

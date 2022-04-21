@@ -11,6 +11,8 @@ use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\JavascriptController;
 use App\Http\Controllers\NewpostController;
 use App\Http\Controllers\PhpController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,25 +25,33 @@ use App\Http\Controllers\PhpController;
 |
 */
 
-Route::get('/',[HomeController::class,'index'])->name('home');
-Route::get('laravel',[LaravelController::class,'index'])->name('laravel');
-Route::get('vue-js',[VuejsController::class,'index'])->name('vuejs');
-Route::get('php',[PhpController::class,'index'])->name('php');
-Route::get('javascript',[JavascriptController::class,'index'])->name('javascript');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('laravel', [LaravelController::class, 'index'])->name('laravel');
+Route::get('vue-js', [VuejsController::class, 'index'])->name('vuejs');
+Route::get('php', [PhpController::class, 'index'])->name('php');
+Route::get('javascript', [JavascriptController::class, 'index'])->name('javascript');
 
 
 
 
-//admin route   
+//admin route
+Route::get('adminlogin', [CustomAuthController::class, 'index'])->name('login');
 
-Route::get('adminlogin', [CustomAuthController::class, 'index'])->name('adminlogin');
-Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('adminlogin.custom');
 
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('new-post', [NewpostController::class, 'index'])->name('newpost');
-Route::post('ckeditor/upload', [CKEditorController::class,'upload'])->name('ckeditor.image-upload');
-Route::post('form-submit',[NewpostController::class,'formsubmit'])->name('formsubmit');
-Route::get('all-post',[NewpostController::class,'allpost'])->name('allpost');
-Route::get('oist-edit/{id}',[NewpostController::class,'postedit'])->name('postedit');
-Route::post('editpostedit',[NewpostController::class,'editpostedit'])->name('editpostedit');
-Route::post('delete-post',[NewpostController::class,'deletepost'])->name('deletepost');
+Route::group(['middleware' => ['auth']], function () {
+
+    Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
+
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('new-post', [NewpostController::class, 'index'])->name('newpost');
+    Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.image-upload');
+    Route::post('form-submit', [NewpostController::class, 'formsubmit'])->name('formsubmit');
+    Route::get('all-post', [NewpostController::class, 'allpost'])->name('allpost');
+    Route::get('oist-edit/{id}', [NewpostController::class, 'postedit'])->name('postedit');
+    Route::post('editpostedit', [NewpostController::class, 'editpostedit'])->name('editpostedit');
+    Route::post('delete-post', [NewpostController::class, 'deletepost'])->name('deletepost');
+
+    // Role permission
+    Route::resource('manage-admin', UserController::class)->names('users');
+    Route::resource('manage-role', RoleController::class)->names('roles');
+});

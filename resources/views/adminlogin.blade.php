@@ -31,7 +31,7 @@
                     <div class="card">
                         <h3 class="card-header text-center">Admin Login</h3>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('adminlogin.custom') }}">
+                            <form method="POST" action="{{ route('login.custom') }}">
                                 @csrf
                                 <div class="form-group mb-3">
                                     <input type="text" placeholder="Email" id="email" class="form-control"
